@@ -20,7 +20,8 @@
     <% if user != current_user %>
    <th><%= current_user.following?(user) %></th>
    <link_to コメント数: <%= @book.book_comments.count %></td>
-   class="btn btn-success">フォローする
+   
+    
    <% end %>
 	</tr>
 </table>
