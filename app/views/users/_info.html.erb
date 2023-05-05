@@ -11,23 +11,22 @@
 
 	<tr>
 	  <th>follows</th>
-    <th><%= link_to user.active_relationships.count, relationships_follow_path %></th>
+    <th><%= link_to user.followers.count, followers_user_path(user) %></th>
 	  <th>followers</th>
-	  <th><%= link_to user.passive_relationships.count, relationships_follower_path %></th>
+	  <th><%= link_to user.followers.count, followeds_user_path(user) %></th>
 	</tr>
-	<tr>
-  
-    <% if user != current_user %>
-   <th><%= current_user.following?(user) %></th>
-   <link_to コメント数: <%= @book.book_comments.count %></td>
-   
-    
-   <% end %>
-	</tr>
-</table>
+	</table>
 
-<div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
+  <div class='row'>
+    <% if user != current_user %>
+    <td><%= render "relationships/btn", user: user %></td>
+    <% else %>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+
+      <%# if user != current_user %>
+     <%#= current_user.following?(user) %>
+       <%#= @book.book_comments.count %>
+   <% end %>
   <% end %>
 </div>

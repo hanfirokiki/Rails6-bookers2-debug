@@ -41,6 +41,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+
+  def followeds
+    @user = User.find(params[:id])
+    @users = @user.followeds
+
+  end
+
   private
 
   def user_params
@@ -48,16 +59,16 @@ class UsersController < ApplicationController
   end
 
   def is_matching_login_user
-    user = current_user 
-    unless user.id == current_user.id 
+    user = current_user
+    unless user.id == current_user.id
       redirect_to book_path(current_user.id)
     end
-  end  
-  
+  end
+
   #def ensure_correct_user
    # @user = User.find(params[:id])
    # if @user != current_user
-    #  redirect_to books_path 
+    #  redirect_to books_path
    # end
  # end
 #end
@@ -68,5 +79,5 @@ def ensure_correct_user
   redirect_to user_path(current_user)
   end
 end
- 
+
 end
