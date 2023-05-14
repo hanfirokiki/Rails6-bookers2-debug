@@ -1,6 +1,6 @@
 class BookCommentsController < ApplicationController
   def create
-    #@user = User.find(params[:id])
+    
     @book = Book.find(params[:book_id])
     comment = current_user.book_comments.new(book_comment_params)
     comment.book_id = @book.id
@@ -13,6 +13,7 @@ class BookCommentsController < ApplicationController
     BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
     #redirect_to request.referer
   end
+
 
   private
   def book_comment_params
